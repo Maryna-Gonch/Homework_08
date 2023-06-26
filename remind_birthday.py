@@ -18,11 +18,10 @@ def get_birthdays_per_week(users):
         this_year_birthday = datetime(
             current_datetime.year, values.month, values.day)
         days_to_birthday = this_year_birthday - current_datetime
-        if days_to_birthday.days < 0 or days_to_birthday.days > 6:
-            continue
-        weekday = this_year_birthday.strftime('%A')
-        this_week_birthday['Monday' if weekday in [
-            'Sunday', 'Saturday'] else weekday].append(key)
+        if days_to_birthday.days >= 0 and days_to_birthday.days <= 6:
+            weekday = this_year_birthday.strftime('%A')
+            this_week_birthday['Monday' if weekday in [
+                'Sunday', 'Saturday'] else weekday].append(key)
     for key, values in this_week_birthday.items():
         print(f"{key} : {', '.join(values)}")
 
@@ -34,3 +33,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
